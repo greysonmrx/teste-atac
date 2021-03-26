@@ -95,7 +95,7 @@ describe('Create user', () => {
     expect(response.body).toMatchObject(
       expect.objectContaining({
         status: expect.stringMatching('error'),
-        message: expect.stringMatching('Erro de validação.'),
+        message: expect.stringMatching("O campo 'nome' não pode estar vazio."),
       }),
     );
   });
@@ -117,7 +117,7 @@ describe('Create user', () => {
     expect(response.body).toMatchObject(
       expect.objectContaining({
         status: expect.stringMatching('error'),
-        message: expect.stringMatching('Erro de validação.'),
+        message: expect.stringMatching("O campo 'e-mail' não pode estar vazio."),
       }),
     );
   });
@@ -140,7 +140,7 @@ describe('Create user', () => {
     expect(response.body).toMatchObject(
       expect.objectContaining({
         status: expect.stringMatching('error'),
-        message: expect.stringMatching('Erro de validação.'),
+        message: expect.stringMatching("O campo 'e-mail' precisa conter um e-mail válido."),
       }),
     );
   });
@@ -162,7 +162,7 @@ describe('Create user', () => {
     expect(response.body).toMatchObject(
       expect.objectContaining({
         status: expect.stringMatching('error'),
-        message: expect.stringMatching('Erro de validação.'),
+        message: expect.stringMatching("O campo 'senha' não pode estar vazio."),
       }),
     );
   });
@@ -184,7 +184,7 @@ describe('Create user', () => {
     expect(response.body).toMatchObject(
       expect.objectContaining({
         status: expect.stringMatching('error'),
-        message: expect.stringMatching('Erro de validação.'),
+        message: expect.stringMatching("O campo 'idade' não pode estar vazio."),
       }),
     );
   });
@@ -207,7 +207,7 @@ describe('Create user', () => {
     expect(response.body).toMatchObject(
       expect.objectContaining({
         status: expect.stringMatching('error'),
-        message: expect.stringMatching('Erro de validação.'),
+        message: expect.stringMatching("O campo 'idade' precisa ser um número."),
       }),
     );
   });
@@ -230,7 +230,7 @@ describe('Create user', () => {
     expect(response.body).toMatchObject(
       expect.objectContaining({
         status: expect.stringMatching('error'),
-        message: expect.stringMatching('Erro de validação.'),
+        message: expect.stringMatching('A senha deve conter no mínimo 6 dígitos.'),
       }),
     );
   });
