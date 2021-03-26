@@ -44,9 +44,12 @@ class App {
       }
 
       if (isCelebrateError(err)) {
+        const keys = err.details.keys();
+        const message = err.details.get(keys.next().value)?.message;
+
         return response.status(400).json({
           status: 'error',
-          message: 'Erro de validação.',
+          message: message || 'Erro de validação.',
         });
       }
 
