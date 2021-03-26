@@ -1,19 +1,18 @@
+import AppError from '@shared/errors/AppError';
+
 import FakeTodosRepository from '@modules/todos/repositories/fakes/FakeTodosRepository';
 import CreateTodoService from '@modules/todos/services/CreateTodoService';
 import FakeUsersRepository from '@modules/users/repositories/fakes/FakeUsersRepository';
-import FakeUserTodosRepository from '@modules/user_todos/repositories/fakes/FakeUserTodosRepository';
 
 let fakeTodosRepository: FakeTodosRepository;
-let fakeUserTodosRepository: FakeUserTodosRepository;
 let fakeUsersRepository: FakeUsersRepository;
 let createTodo: CreateTodoService;
 
 describe('Create Todo service', () => {
   beforeEach(() => {
     fakeTodosRepository = new FakeTodosRepository();
-    fakeUserTodosRepository = new FakeUserTodosRepository();
     fakeUsersRepository = new FakeUsersRepository();
-    createTodo = new CreateTodoService(fakeTodosRepository, fakeUserTodosRepository);
+    createTodo = new CreateTodoService(fakeTodosRepository, fakeUsersRepository);
   });
 
   it('should be able to create a new todo', async () => {
@@ -26,9 +25,15 @@ describe('Create Todo service', () => {
 
     const todo = await createTodo.run({ descricao: 'Comprar leite', user_id });
 
-    const userTodos = await fakeUserTodosRepository.findAllByUserId(user_id);
-
-    expect(userTodos).toHaveLength(1);
     expect(todo).toHaveProperty('id');
+  });
+
+  it('should not be able to create a new todo with a non-existing user', async () => {
+    await expect(
+      createTodo.run({
+        descricao: 'Comprar leite',
+        user_id: 'non-existing-user',
+      }),
+    ).rejects.toBeInstanceOf(AppError);
   });
 });

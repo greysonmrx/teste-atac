@@ -1,10 +1,11 @@
 import { inject, injectable } from 'tsyringe';
 
-import IUserTodosRepository from '@modules/user_todos/repositories/IUserTodosRepository';
+import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 
+import AppError from '@shared/errors/AppError';
 import ITodosRepository from '../repositories/ITodosRepository';
 
-import ITodo from '../entities/ITodo';
+import CreateTodoView, { Response } from '../views/CreateTodoView';
 
 type Request = {
   descricao: string;
@@ -17,16 +18,20 @@ class CreateTodoService {
     @inject('TodosRepository')
     private todosRepository: ITodosRepository,
 
-    @inject('UserTodosRepository')
-    private userTodosRepository: IUserTodosRepository,
+    @inject('UsersRepository')
+    private usersRepository: IUsersRepository,
   ) {}
 
-  public async run({ descricao, user_id }: Request): Promise<ITodo> {
-    const todo = await this.todosRepository.create({ descricao });
+  public async run({ descricao, user_id }: Request): Promise<Response> {
+    const user = await this.usersRepository.findById(user_id);
 
-    await this.userTodosRepository.create({ to_do_id: todo.id, user_id });
+    if (!user) {
+      throw new AppError('Usuário não encontrado.', 404);
+    }
 
-    return todo;
+    const todo = await this.todosRepository.create({ descricao, users: [user] });
+
+    return CreateTodoView(todo);
   }
 }
 
