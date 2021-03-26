@@ -8,6 +8,8 @@ import cors from 'cors';
 import createConnection from '@shared/infra/typeorm';
 import routes from './routes';
 
+import '@shared/container';
+
 class App {
   public server: Express;
 
