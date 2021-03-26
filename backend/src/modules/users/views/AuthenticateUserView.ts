@@ -1,7 +1,7 @@
 import IUser from '../entities/IUser';
 
 export type Response = {
-  user: Omit<IUser, 'senha'>;
+  user: Omit<IUser, 'senha' | 'todos'>;
   token: string;
 };
 

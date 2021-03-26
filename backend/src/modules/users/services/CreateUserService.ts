@@ -6,9 +6,7 @@ import IHashProvider from '../providers/HashProvider/models/IHashProvider';
 
 import IUsersRepository from '../repositories/IUsersRepository';
 
-import CreateUserView from '../views/CreateUserView';
-
-import IUser from '../entities/IUser';
+import CreateUserView, { Response } from '../views/CreateUserView';
 
 type Request = {
   nome: string;
@@ -27,7 +25,7 @@ class CreateUserService {
     private hashProvider: IHashProvider,
   ) {}
 
-  public async run({ nome, email, idade, senha }: Request): Promise<Omit<IUser, 'senha'>> {
+  public async run({ nome, email, idade, senha }: Request): Promise<Response> {
     const checkIfUserExists = await this.usersRepository.findByEmail(email);
 
     if (checkIfUserExists) {
