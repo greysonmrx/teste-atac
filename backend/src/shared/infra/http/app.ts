@@ -4,6 +4,7 @@ import 'dotenv/config';
 import express, { Express, Request, Response, NextFunction } from 'express';
 import 'express-async-errors';
 import cors from 'cors';
+import { isCelebrateError } from 'celebrate';
 
 import AppError from '@shared/errors/AppError';
 
@@ -39,6 +40,13 @@ class App {
         return response.status(err.statusCode).json({
           status: 'error',
           message: err.message,
+        });
+      }
+
+      if (isCelebrateError(err)) {
+        return response.status(400).json({
+          status: 'error',
+          message: 'Erro de validação.',
         });
       }
 
