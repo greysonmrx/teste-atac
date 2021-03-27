@@ -23,7 +23,7 @@ $ cd teste-atac
 
 ```bash
 # Access the folder
-cd backend
+$ cd backend
 
 # Install the dependencies
 $ yarn
