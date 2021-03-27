@@ -27,6 +27,14 @@ export default createGlobalStyle`
 
   html {
     font-size: 14px;
+
+    @media only screen and (max-width: 600px) {
+      font-size: 12px;
+    }
+
+    @media only screen and (max-width: 400px) {
+      font-size: 10px;
+    }
   }
 
   h1 {

@@ -67,11 +67,12 @@ export const Container = styled(animated.div)<TostProps>`
       strong {
         color: #282c36;
         font-weight: 600;
+        font-size: 1.3rem;
       }
 
       p {
         color: #7f848f;
-        font-size: 15px;
+        font-size: 1.2rem;
       }
     }
   }

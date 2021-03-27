@@ -16,7 +16,7 @@ export const Container = styled.button<ContainerProps>`
   padding: 0 25px;
   border: none;
   outline: none;
-  font-size: 18px;
+  font-size: 1.5rem;
   font-weight: 600;
   letter-spacing: 0.36px;
   border-radius: 5px;

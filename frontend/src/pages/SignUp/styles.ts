@@ -13,6 +13,14 @@ export const Container = styled.div`
 
   h1 {
     margin-bottom: 40px;
+
+    @media only screen and (max-width: 600px) {
+      margin-bottom: 35px;
+    }
+
+    @media only screen and (max-width: 400px) {
+      margin-bottom: 30px;
+    }
   }
 
   form {
@@ -22,7 +30,7 @@ export const Container = styled.div`
 
   a {
     text-decoration: none;
-    font-size: 18px;
+    font-size: 1.5rem;
     font-weight: 600;
   }
 `;

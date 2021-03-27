@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import * as Yup from 'yup';
 import { Link, useHistory } from 'react-router-dom';
 import { FormHandles } from '@unform/core';
@@ -27,7 +27,7 @@ const SignUp: React.FC = () => {
 
   const [loading, setLoading] = useState(false);
 
-  async function handleSubmit(data: SignUpFormData) {
+  const handleSubmit = useCallback(async (data: SignUpFormData) => {
     setLoading(true);
 
     try {
@@ -50,8 +50,8 @@ const SignUp: React.FC = () => {
 
       addToast({
         type: 'success',
-        title: 'Logado com sucesso!',
-        description: 'Seus dados foram guardados com êxito.',
+        title: 'Cadastrado com sucesso!',
+        description: 'Agora faça o login para acessar o app.',
       });
 
       setLoading(false);
@@ -73,7 +73,7 @@ const SignUp: React.FC = () => {
         description: err.response?.data.message,
       });
     }
-  }
+  }, [addToast, history]);
 
   return (
     <Container>
