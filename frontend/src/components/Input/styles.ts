@@ -16,10 +16,18 @@ export const Container = styled.div<ContainerProps>`
 
   & + div {
     margin-top: 30px;
+
+    @media only screen and (max-width: 600px) {
+      margin-top: 25px;
+    }
+
+    @media only screen and (max-width: 400px) {
+      margin-top: 20px;
+    }
   }
 
   label {
-    font-size: 20px;
+    font-size: 1.4rem;
     color: #170c3a;
     letter-spacing: 0.4px;
     font-weight: 600;
@@ -27,7 +35,7 @@ export const Container = styled.div<ContainerProps>`
     span {
       position: absolute;
       margin-left: 5px;
-      font-size: 25px;
+      font-size: 1.8rem;
       color: ${({ isErrored }) => (isErrored ? '#F95E5A' : '#8F8A9B')};
       transition: all 0.2s;
     }
@@ -48,6 +56,15 @@ export const InputContainer = styled.div<InputContainerProps>`
   display: flex;
   justify-content: center;
   margin-top: ${({ hasLabel }) => hasLabel && 20}px;
+
+  @media only screen and (max-width: 600px) {
+    margin-top: ${({ hasLabel }) => hasLabel && 15}px;
+  }
+
+  @media only screen and (max-width: 400px) {
+    margin-top: ${({ hasLabel }) => hasLabel && 10}px;
+  }
+
   width: 100%;
   padding: 13px 20px;
   border-radius: 5px;
@@ -86,7 +103,7 @@ export const InputContainer = styled.div<InputContainerProps>`
     outline: none;
     color: ${({ isErrored }) => (isErrored ? '#F95E5A' : '#170C3A')};
     transition: all 0.2s;
-    font-size: 20px;
+    font-size: 1.4rem;
     min-width: 0px;
   }
 `;
